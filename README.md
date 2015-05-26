@@ -1,2 +1,2 @@
-# trs-zoom-add-in
+# trs-zoom-addin
 TRS Zoom add in for ArcMap
