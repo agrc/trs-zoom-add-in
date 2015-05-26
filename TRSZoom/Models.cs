@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace TRSZoom
 {
@@ -18,33 +19,46 @@ namespace TRSZoom
         public T Result { get; set; }
     }
 
+    public class AttributeFeature
+    {
+        public Dictionary<string, string> Attributes { get; set; }
+    }
+
     public class Feature
     {
-        private IEnvelope _envelope;
-        public string Geometry
-        {
-            set
-            {
-                JSONReader reader = new JSONReader();
-                reader.ReadFromString(value);
-                JSONDeserializerGdb ds = new JSONDeserializerGdb();
-                ds.InitDeserializer(reader, null);
-                IExternalDeserializerGdb ex = ds as IExternalDeserializerGdb;
-                _envelope = ex.ReadGeometry(esriGeometryType.esriGeometryEnvelope) as IEnvelope;
-                _envelope.SpatialReference = ex.ReadSpatialReference();
-            }
-        }
-        public IEnvelope Envelope
+        public Geometry Geometry { get; set; }
+        public FeatureAttributes Attributes { get; set; }
+    }
+
+    public class FeatureAttributes
+    {
+        public Dictionary<string, string> Attributes { get; set; }
+    }
+
+    public class Geometry
+    {
+        public List<List<List<double>>> Rings { get; set; }
+        public string Type { get; set; }
+        public SpatialReference SpatialReference { get; set; }
+        [JsonIgnore]
+        public IGeometry Polygon
         {
             get
             {
-                return _envelope;
+                JSONReader reader = new JSONReader();
+                reader.ReadFromString(JsonConvert.SerializeObject(this));
+                JSONDeserializerGdb ds = new JSONDeserializerGdb();
+                ds.InitDeserializer(reader, null);
+                IExternalDeserializerGdb ex = ds as IExternalDeserializerGdb;
+                var poly = ex.ReadGeometry(esriGeometryType.esriGeometryPolygon);
+
+                return poly;
             }
         }
     }
 
-    public class AttributeFeature
+    public class SpatialReference
     {
-        public Dictionary<string, string> Attributes { get; set; }
+        public int Wkid { get; set; }
     }
 }

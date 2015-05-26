@@ -232,7 +232,7 @@ namespace TRSZoom
             if (cbo_Township.SelectedItem == choose || cbo_Township.Text == "" ||
                 cbo_Range.SelectedItem == choose || cbo_Range.Text == "")
             {
-                this.messageBox.Text = "Select T AND R";
+                this.messageBox.Text = "Select Township AND Range";
                 return;
             }
 
@@ -274,7 +274,7 @@ namespace TRSZoom
                 }
 
                 var feat = resultContainer.Result[0];
-                IEnvelope extentEnvelope = feat.Envelope;
+                IEnvelope extentEnvelope = feat.Geometry.Polygon.Envelope;
                 extentEnvelope.Expand(1.1, 1.1, true);
 
                 IMxDocument doc = (IMxDocument)ArcMap.Application.Document;
@@ -299,7 +299,7 @@ namespace TRSZoom
             }
             catch
             {
-                this.messageBox.Text = "Error querying PLSS data";
+                this.messageBox.Text = "Error querying PLSS data!";
                 this.messageBox.Refresh();
             }
         }
