@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.cbo_Section = new System.Windows.Forms.ComboBox();
-            this.cbo_Range = new System.Windows.Forms.ComboBox();
             this.cbo_Township = new System.Windows.Forms.ComboBox();
-            this.messageBox = new System.Windows.Forms.TextBox();
+            this.cbo_Range = new System.Windows.Forms.ComboBox();
+            this.cbo_Section = new System.Windows.Forms.ComboBox();
             this.zoomToTRS = new System.Windows.Forms.Button();
+            this.messageBox = new System.Windows.Forms.TextBox();
             this.S = new System.Windows.Forms.Label();
             this.R = new System.Windows.Forms.Label();
             this.T = new System.Windows.Forms.Label();
@@ -54,16 +54,16 @@
             this.label1.TabIndex = 112;
             this.label1.Text = "optional";
             // 
-            // cbo_Section
+            // cbo_Township
             // 
-            this.cbo_Section.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cbo_Section.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbo_Section.FormattingEnabled = true;
-            this.cbo_Section.Location = new System.Drawing.Point(11, 172);
-            this.cbo_Section.Name = "cbo_Section";
-            this.cbo_Section.Size = new System.Drawing.Size(157, 21);
-            this.cbo_Section.TabIndex = 2;
-            this.cbo_Section.SelectedIndexChanged += new System.EventHandler(this.cbo_Section_SelectedIndexChanged);
+            this.cbo_Township.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbo_Township.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbo_Township.FormattingEnabled = true;
+            this.cbo_Township.Location = new System.Drawing.Point(11, 92);
+            this.cbo_Township.Name = "cbo_Township";
+            this.cbo_Township.Size = new System.Drawing.Size(157, 21);
+            this.cbo_Township.TabIndex = 0;
+            this.cbo_Township.SelectedIndexChanged += new System.EventHandler(this.cbo_Township_SelectedIndexChanged);
             // 
             // cbo_Range
             // 
@@ -76,16 +76,16 @@
             this.cbo_Range.TabIndex = 1;
             this.cbo_Range.SelectedIndexChanged += new System.EventHandler(this.cbo_Range_SelectedIndexChanged);
             // 
-            // cbo_Township
+            // cbo_Section
             // 
-            this.cbo_Township.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cbo_Township.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbo_Township.FormattingEnabled = true;
-            this.cbo_Township.Location = new System.Drawing.Point(11, 92);
-            this.cbo_Township.Name = "cbo_Township";
-            this.cbo_Township.Size = new System.Drawing.Size(157, 21);
-            this.cbo_Township.TabIndex = 0;
-            this.cbo_Township.SelectedIndexChanged += new System.EventHandler(this.cbo_Township_SelectedIndexChanged);
+            this.cbo_Section.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cbo_Section.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbo_Section.FormattingEnabled = true;
+            this.cbo_Section.Location = new System.Drawing.Point(11, 172);
+            this.cbo_Section.Name = "cbo_Section";
+            this.cbo_Section.Size = new System.Drawing.Size(157, 21);
+            this.cbo_Section.TabIndex = 2;
+            this.cbo_Section.SelectedIndexChanged += new System.EventHandler(this.cbo_Section_SelectedIndexChanged);
             // 
             // messageBox
             // 
@@ -159,7 +159,6 @@
             this.UB.Name = "UB";
             this.UB.Size = new System.Drawing.Size(71, 23);
             this.UB.TabIndex = 1;
-            this.UB.TabStop = true;
             this.UB.Text = "Unita Basin";
             this.UB.UseVisualStyleBackColor = true;
             // 
@@ -172,7 +171,6 @@
             this.SL.Name = "SL";
             this.SL.Size = new System.Drawing.Size(62, 23);
             this.SL.TabIndex = 0;
-            this.SL.TabStop = true;
             this.SL.Text = "Salt Lake";
             this.SL.UseVisualStyleBackColor = true;
             this.SL.CheckedChanged += new System.EventHandler(this.SL_CheckedChanged);
@@ -201,11 +199,11 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbo_Section;
-        private System.Windows.Forms.ComboBox cbo_Range;
         private System.Windows.Forms.ComboBox cbo_Township;
-        private System.Windows.Forms.TextBox messageBox;
+        private System.Windows.Forms.ComboBox cbo_Range;
+        private System.Windows.Forms.ComboBox cbo_Section;
         private System.Windows.Forms.Button zoomToTRS;
+        private System.Windows.Forms.TextBox messageBox;
         private System.Windows.Forms.Label S;
         private System.Windows.Forms.Label R;
         private System.Windows.Forms.Label T;
