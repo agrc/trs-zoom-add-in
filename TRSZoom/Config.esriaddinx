@@ -6,20 +6,27 @@
   <Image>Images\TRSZoom.png</Image>
   <Author>Scott Davis</Author>
   <Company>AGRC</Company>
-  <Date>5/21/2015</Date>
+  <Date>5/26/2015</Date>
   <Targets>
     <Target name="Desktop" version="10.2" />
   </Targets>
   <AddIn language="CLR4.5" library="TRSZoom.dll" namespace="TRSZoom">
     <ArcMap>
       <Commands>
-        <Button id="TRSZoom_TRSZoomButton" class="TRSZoomButton" message="Toggle the TRS Zoom dockable window" caption="TRS Zoom" tip="Toggle TRS Zoom Window" category="Add-In Controls" image="Images\TRSZoomButton.png" />
+        <Button id="TRSZoom_TRSZoomButton" class="TRSZoomButton" message="Open the TRS Zoom dockable window" caption="TRS Zoom" tip="Open TRS Zoom" category="Add-In Controls" image="Images\TRSZoomButton.png" />
       </Commands>
       <DockableWindows>
         <DockableWindow id="TRSZoom_TRSZoomDockableWindow" class="TRSZoomDockableWindow+AddinImpl" caption="TRSZoom" image="Images\TRSZoomDockableWindow.png">
           <InitialPlacement height="300" width="300" state="pinned" position="left" />
         </DockableWindow>
       </DockableWindows>
+      <Toolbars>
+        <Toolbar id="AGRC_TRSZoom_TRS_Zoom" caption="TRS Zoom" showInitially="true">
+          <Items>
+            <Button refID="TRSZoom_TRSZoomButton" />
+          </Items>
+        </Toolbar>
+      </Toolbars>
     </ArcMap>
   </AddIn>
 </ESRI.Configuration>
