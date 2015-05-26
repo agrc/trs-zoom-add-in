@@ -9,42 +9,44 @@ using System.Threading.Tasks;
 
 namespace TRSZoom
 {
-    public class ResultContainer<T> where T : class
-    {
-        public int Status { get; set; }
-
-        public string Message { get; set; }
-
-        public T Result { get; set; }
+     public class ResultContainer<T> where T : class {
+            public int Status { get; set; }
+            public string Message { get; set; }
+            public T Result { get; set; }
     }
 
-    public class Feature
-    {
-        private IEnvelope _envelope;
-        public string Geometry
+    public class Feature {
+            public Geometry Geometry { get; set; }
+            public FeatureAttributes Attributes { get; set; }
+    }
+
+    public class FeatureAttributes {
+        public Dictionary<string, string> Attributes { get; set; }
+    }
+
+    public class Geometry {
+        public List<List<List<double>>> Rings { get; set; }
+        public string Type { get; set; }
+        public SpatialReference SpatialReference { get; set; }
+        [JsonIgnore]
+        public IEnvelope Geometry
         {
-            set
+            get
             {
                 JSONReader reader = new JSONReader();
-                reader.ReadFromString(value);
+                reader.ReadFromString(Rings);
                 JSONDeserializerGdb ds = new JSONDeserializerGdb();
                 ds.InitDeserializer(reader, null);
                 IExternalDeserializerGdb ex = ds as IExternalDeserializerGdb;
                 _envelope = ex.ReadGeometry(esriGeometryType.esriGeometryEnvelope) as IEnvelope;
                 _envelope.SpatialReference = ex.ReadSpatialReference();
-            }
-        }
-        public IEnvelope Envelope
-        {
-            get
-            {
+                
                 return _envelope;
             }
         }
     }
 
-    public class AttributeFeature
-    {
-        public Dictionary<string, string> Attributes { get; set; }
+    public class SpatialReference {
+        public int Wkid { get; set; }
     }
 }
