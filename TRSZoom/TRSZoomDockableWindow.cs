@@ -274,11 +274,11 @@ namespace TRSZoom
                 }
 
                 var feat = resultContainer.Result[0];
-                IEnvelope extentEnvelope = feat.Geometry.Polygon.Envelope;
+                var extentEnvelope = feat.Geometry.Polygon.Envelope;
                 extentEnvelope.Expand(1.1, 1.1, true);
 
-                IMxDocument doc = (IMxDocument)ArcMap.Application.Document;
-                IActiveView activeView = doc.ActiveView;
+                var doc = (IMxDocument)ArcMap.Application.Document;
+                var activeView = doc.FocusMap as IActiveView;
 
                 //check to make sure map has spatial reference. If not, quit.
                 if (activeView.FocusMap.SpatialReference == null)
